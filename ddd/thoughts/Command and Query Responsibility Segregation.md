@@ -31,7 +31,7 @@ CQRS 의 특징은 다음과 같다.
 - 쿼리는 데이터베이스를 수정하지 않고, `도메인 정보를 캡슐화 하지 않는 DTO 를 반환`한다.
   - API 요청을 처리할 때, 엔티티가 아닌 DTO 를 반환해야 하는데, 예를 들어 엔티티에 비밀번호 필드가 있을 경우 해당 비밀번호가 응답에 노출될 가능성도 있으며, API 명세가 바뀌게 되면 엔티티도 변해야 하는 불상사가 발생할 수 있다. 
 
-즉, CQRS 는 `WRITE MODEL` 과 `READ MODEL`이 다른데, WRITE MODEL 은 보통 `엔티티`를 의미하며, READ MODEL 은 `DTO` 를 의미한다.
+즉, CQRS 는 `WRITE MODEL` 과 `READ MODEL`이 다른데, WRITE MODEL 은 보통 `ENTITY`를 의미하며, READ MODEL 은 `DTO` 를 의미한다.
 
 ## 가맹점 신청 개발 문제 
 
