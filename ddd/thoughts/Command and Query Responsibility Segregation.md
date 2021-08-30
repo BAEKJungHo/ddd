@@ -33,6 +33,24 @@ CQRS 의 특징은 다음과 같다.
 
 즉, CQRS 는 `WRITE MODEL` 과 `READ MODEL`이 다른데, WRITE MODEL 은 보통 엔티티를 의미하며, READ MODEL 은 DTO 를 의미한다.
 
+## 가맹점 신청 개발 문제 
+
+최근에 DDD 를 공부하고 가맹점 신청 개발건에 DDD 개념을 적용하여 개발을 하였는데, 첫 시도이고 공부가 제대로 안 됬던 탓인지 다음과 같은 문제가 발생했다.
+
+1. 프레젠테이션 계층에서 CRUD 작업을 모두 DTO 를 파라미터로 받아서 사용 DTO 자체에 유효성 검사 스택이 들어가있고, 도메인 로직이 들어가 있음.
+2. VALIDATOR 에도 도메인 로직이 들어가 있음.
+3. 패키지 구분을 DOMAIN 패키지 아래에 DTO 를 만들어서 사용했음.
+
+도메인 로직이 엔티티나 명세에 모여있지 않고 여러 군데 흩어져서 응집도가 낮아지고 도메인 분석이 어려워짐.
+
+따라서 아래와 같이 리팩토링을 실시 하였다.
+
+- REFACTOR
+
+1. READ 작업에는 DTO 를 파라미터로 사용(즉, 읽기 작업 후 데이터 반환 시에는 DTO 사용)
+2. CUD 작업에는 데이터 반환이 필요없으므로 유효성 검사와 도메인 로직이 들어있는 ENTITY 사용
+3. DTO 패키지를 WEB 아래로 이동
+
 ## References
 
 > [복잡한 쿼리는 리드모델로](https://github.com/BAEKJungHo/driven/blob/main/ddd/%EB%8F%84%EB%A9%94%EC%9D%B8%20%EC%A3%BC%EB%8F%84%20%EC%84%A4%EA%B3%84%20%EC%B2%A0%EC%A0%80%20%EC%9E%85%EB%AC%B8/13.%20%EB%AA%85%EC%84%B8(Specification).md#%EB%B3%B5%EC%9E%A1%ED%95%9C-%EC%BF%BC%EB%A6%AC%EB%8A%94-%EB%A6%AC%EB%93%9C%EB%AA%A8%EB%8D%B8%EB%A1%9C)
