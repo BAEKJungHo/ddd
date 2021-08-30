@@ -25,20 +25,20 @@ Validator 에서 도메인 로직들을 노출 시키면, 도메인 로직들이
 
 내가 생각하기에 이상적인 패키지 분리방식은 다음과 같다.
 
-- `domain`
-  - `dto`
-    - xxxDto.java
-  - `entities.java`
+- `domain package`
+  - `dto package`
+    - dto files
+  - `entities files or enum files`
     - 엔티티안에 Enum 을 포함 시킬 수 있다. 
     - 예를 들어, 가맹점 신청 시, 신청 타입이라는 Enum 이 있을 때, Enum class 를 밖으로 빼두면, 어떤 엔티티에 대한 신청타입인지 잘 모를 수가 있음. 물론, 엔티티에서 Enum 클래스를 필드로 갖는다면 쉽게 알 수 있지만, 서로 연관있는 엔티티에 Enum 을 만듦으로써 응집력을 높일 수 있지 않나 생각 함.
-  - `specification`
-- `repository`
-- `service`
-  - xxxFindService.java
-  - xxxService.java
-- `web`
-  - `validator`
-  - xxxController.java
+  - `specification package`
+- `repository package`
+- `service package`
+  - xxxFindService files
+  - xxxService files
+- `web package`
+  - `validator package`
+  - controller files
 
 
 
